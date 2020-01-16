@@ -1,18 +1,32 @@
 #!/usr/bin/env python3
 from sys import argv
 from os import system as run
+def youtube(query):
+	quiet()
+	run("sudo omxplayer --no-keys --loop \"\"$(youtube-dl -f bestaudio -g ytsearch:"+query+ ")\"")
+otvstr = "sudo omxplayer --no-keys "
+def otvoreniHit():
+	quiet()
+	run(otvstr + "\"http://proxima.shoutca.st:8357/;\"&")
+def otvoreniHot():
+	quiet()
+	run(otvstr + "\"http://kepler.shoutca.st:8404/;\"&")
+def otvoreniLuv():
+	quiet()
+	run(otvstr + "\"http://proxima.shoutca.st:8469/;\"&")
+def quiet():
+	run("sudo pkill \"youtbe-dl\"; sudo pkill \"omxplayer\"")
+
 try:
 	if(argv[1] == "-y"):
-		run("sudo omxplayer --loop --vol -2500 \"$(youtube-dl -f bestaudio -g ytsearch:"+argv[2]+ ")\"")
-	elif(argv[1] == "-o"):
-		run("sudo omxplayer --vol -2500 http://proxima.shoutca.st:8357/;")
-	elif(argv[1] == "-s"): 
-		run("sudo pkill \"youtube-dl\"; sudo pkill -INT \"omxplayer\"")
-	elif(argv[1] == "-h"):
-		print("""-y + search term to play youtube video
--o to play otvoreni radio
--h print help(current command""")
+		youtube(argv[2])
+	elif(argv[1] == "-0"):
+		otvoreniHit()
+	elif(argv[1] == "-1"):
+		otvoreniHot()
+	elif(argv[1] == "-2"):
+		otvoreniLuv()
+	elif(argv[1] == "-q"):
+		quiet()
 except:
-	print("""-y + search term to play youtube video
--o to play otvoreni radio
--h print help(current command""")
+	print("NO")
